@@ -1,0 +1,26 @@
+# Location: Fairbanks (Trothttheet)
+# RCP scenario values represent different projected global emission scenarios based on possible human behavior. CRU 3.22 and PRISM are historical datasets.
+# Mean monthly values are the average for a given month across all five models and all ten years in the decade.
+# Min values represent the coolest year in the decade for a given month for the average of the five models.
+# Max values represent the warmest year in the decade for a given month for the average of the five models.
+id,community,region,country,latitude,longitude,type,scenario,resolution,unit,daterange,janMin,janMean,janMax,febMin,febMean,febMax,marMin,marMean,marMax,aprMin,aprMean,aprMax,mayMin,mayMean,mayMax,junMin,junMean,junMax,julMin,julMean,julMax,augMin,augMean,augMax,sepMin,sepMean,sepMax,octMin,octMean,octMax,novMin,novMean,novMax,decMin,decMean,decMax
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,prism,2km,C,Historical,,-22.0,,,-18.6,,,-11.2,,,-1.0,,,8.9,,,15.0,,,16.2,,,13.4,,,7.1,,,-3.6,,,-15.0,,,-21.0,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,prism,2km,mm,Historical,,16,,,12,,,9,,,8,,,17,,,38,,,50,,,54,,,29,,,24,,,20,,,20,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp45,2km,C,2030-2039,-26.6,-19.6,-10.9,-27.1,-14.9,-6.8,-17.2,-7.4,2.5,-9.1,1.5,10.2,3.9,11.2,18.7,9.4,17.2,24.4,12.3,18.1,24.1,9.8,15.1,21.5,3.4,9.0,15.1,-6.7,-0.9,5.7,-18.1,-11.7,-5.1,-25.7,-17.8,-9.3
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp45,2km,C,2060-2069,-26.7,-17.8,-9.2,-23.9,-14.0,-4.5,-16.3,-7.2,2.5,-3.9,2.9,10.3,3.9,12.2,20.4,11.1,17.8,24.3,12.5,19.0,25.2,9.6,15.7,21.4,4.7,10.0,16.7,-5.6,0.2,6.8,-17.2,-10.0,-3.5,-24.4,-16.3,-9.1
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp45,2km,C,2090-2099,-26.1,-17.4,-9.9,-23.7,-13.0,-5.4,-14.2,-6.3,3.2,-4.8,3.2,12.1,3.6,12.2,19.7,10.0,18.2,25.3,13.4,19.2,24.9,11.0,16.2,22.9,5.4,10.0,15.7,-4.2,0.8,6.8,-15.4,-9.3,-2.5,-22.4,-15.2,-6.9
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp45,2km,mm,2030-2039,,18,,,15,,,12,,,9,,,21,,,48,,,57,,,61,,,35,,,27,,,24,,,22,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp45,2km,mm,2060-2069,,22,,,14,,,10,,,9,,,23,,,49,,,57,,,66,,,38,,,32,,,26,,,23,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp45,2km,mm,2090-2099,,19,,,12,,,10,,,10,,,22,,,51,,,63,,,65,,,39,,,31,,,27,,,23,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp60,2km,C,2030-2039,-29.0,-18.9,-9.7,-24.3,-14.7,-5.5,-15.6,-7.7,0.5,-6.0,1.5,9.0,2.8,10.7,18.0,9.6,17.0,24.0,12.3,18.4,23.8,10.4,15.4,21.5,4.1,8.8,14.7,-6.6,-1.4,4.6,-18.9,-12.6,-4.9,-26.5,-18.4,-11.1
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp60,2km,C,2060-2069,-24.7,-17.0,-8.7,-21.7,-13.2,-4.6,-16.6,-6.4,1.9,-6.2,2.7,11.1,4.6,11.9,18.5,9.4,17.4,24.5,12.3,18.8,24.4,10.2,16.2,22.0,4.8,10.2,17.1,-7.0,-0.3,5.6,-19.1,-9.5,-2.9,-24.5,-16.4,-8.8
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp60,2km,C,2090-2099,-21.4,-15.5,-8.8,-21.5,-12.5,-3.0,-13.2,-5.0,3.2,-3.1,3.8,11.2,5.9,13.2,21.6,11.7,18.8,25.2,12.5,19.4,25.2,11.1,16.9,23.3,6.0,10.8,16.6,-4.2,0.6,5.9,-16.0,-9.5,-1.9,-24.3,-15.0,-7.9
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp60,2km,mm,2030-2039,,21,,,15,,,12,,,9,,,22,,,46,,,59,,,58,,,35,,,28,,,24,,,21,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp60,2km,mm,2060-2069,,20,,,12,,,10,,,10,,,28,,,52,,,61,,,63,,,33,,,31,,,25,,,24,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp60,2km,mm,2090-2099,,19,,,15,,,11,,,10,,,24,,,52,,,61,,,65,,,39,,,35,,,26,,,25,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp85,2km,C,2030-2039,-27.7,-17.9,-9.6,-25.1,-13.9,-5.4,-19.0,-7.8,1.3,-7.3,1.6,9.6,2.8,11.3,19.2,10.4,17.4,24.3,12.2,17.8,24.4,9.3,15.3,22.0,4.3,9.3,15.3,-6.9,-0.9,5.0,-19.8,-11.5,-5.7,-24.6,-16.8,-8.1
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp85,2km,C,2060-2069,-24.1,-15.6,-6.3,-19.0,-12.0,-2.8,-12.6,-5.4,2.7,-3.7,3.8,11.4,5.3,12.6,21.2,11.5,18.8,26.5,14.4,19.7,26.6,12.2,17.0,23.1,5.8,10.8,16.9,-4.9,1.1,6.5,-14.0,-7.7,-1.5,-23.8,-14.5,-7.6
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Temperature,rcp85,2km,C,2090-2099,-18.4,-13.0,-6.8,-17.0,-10.0,-3.7,-9.5,-3.1,3.2,-1.3,5.4,12.9,6.6,14.2,21.8,12.2,20.2,26.2,14.8,21.4,27.2,13.2,19.0,24.9,8.0,12.6,18.2,-3.6,2.8,8.1,-12.7,-5.5,-0.7,-20.8,-11.8,-5.9
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp85,2km,mm,2030-2039,,16,,,14,,,11,,,9,,,22,,,46,,,60,,,61,,,35,,,30,,,25,,,22,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp85,2km,mm,2060-2069,,22,,,15,,,12,,,10,,,30,,,50,,,68,,,68,,,39,,,35,,,27,,,25,
+AK124,Fairbanks,Alaska,US,64.8378,-147.716,Precipitation,rcp85,2km,mm,2090-2099,,22,,,16,,,12,,,12,,,30,,,66,,,69,,,75,,,44,,,39,,,37,,,28,

@@ -1,0 +1,5 @@
+.venv/
+VIVA_GUIDE.md
+README.md
+influxdb-data/
+influxdb-config/

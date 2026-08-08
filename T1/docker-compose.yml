@@ -1,0 +1,33 @@
+version: "3.9"
+
+# Task 1 - Distributed Time-Series Data Management with InfluxDB v2.x
+# Coventry Big Data Analytics Coursework
+#
+# Start:   docker compose up -d
+# Verify:  http://localhost:8086  (login with the credentials below)
+
+services:
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb-task1
+    restart: unless-stopped
+    ports:
+      - "8086:8086"                      # API + Web UI
+    volumes:
+      # Persistent storage: host directory -> internal engine path
+      - ./influxdb-data:/var/lib/influxdb2
+      - ./influxdb-config:/etc/influxdb2
+    environment:
+      # --- Automatic first-run bootstrap (org / bucket / admin user) ---
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: BigData2026!
+      DOCKER_INFLUXDB_INIT_ORG: coventry
+      DOCKER_INFLUXDB_INIT_BUCKET: climate_raw
+      DOCKER_INFLUXDB_INIT_RETENTION: 0            # 0 = keep raw data forever
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: coventry-bigdata-supersecret-token
+    healthcheck:
+      test: ["CMD", "influx", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
