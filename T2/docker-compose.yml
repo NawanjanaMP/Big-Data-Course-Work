@@ -1,0 +1,60 @@
+version: "3.9"
+
+# Task 2 - Real-Time Stream Ingestion & Processing
+# Kafka 3.7 (KRaft mode - no ZooKeeper) + Flink 1.18 (JobManager + TaskManager)
+# All services share the 'streamnet' bridge network.
+#
+#   docker compose up -d --build
+#   Flink dashboard: http://localhost:8081
+
+services:
+  kafka:
+    image: apache/kafka:3.7.0
+    container_name: kafka
+    ports:
+      - "9092:9092"                 # EXTERNAL listener for the host-side producer
+    environment:
+      # --- Single-node KRaft: this node is both broker and controller ---
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:19092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:19092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"   # topic must be created explicitly (Step 2.2)
+    networks: [streamnet]
+
+  jobmanager:
+    build: .                        # Flink + Python + Kafka connector (see ./Dockerfile)
+    container_name: flink-jobmanager
+    command: jobmanager
+    ports:
+      - "8081:8081"                 # Flink Web Dashboard
+    environment:
+      FLINK_PROPERTIES: |
+        jobmanager.rpc.address: jobmanager
+    volumes:
+      - ./flink_job.py:/opt/jobs/flink_job.py:ro   # PyFlink job code
+    networks: [streamnet]
+
+  taskmanager:
+    build: .
+    container_name: flink-taskmanager
+    command: taskmanager
+    depends_on: [jobmanager]
+    environment:
+      FLINK_PROPERTIES: |
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 4
+    volumes:
+      - ./flink_job.py:/opt/jobs/flink_job.py:ro
+    networks: [streamnet]
+
+networks:
+  streamnet:
+    driver: bridge
