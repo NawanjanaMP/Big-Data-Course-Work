@@ -1,0 +1,59 @@
+# Task 3 - Scalable Analytics with Apache Spark (standalone cluster)
+# 1 Master (admin UI :8080) + 2 Workers, each capped at 2 cores / 2 GB,
+# with a shared host storage layer (./data) containing the SNAP text file.
+#
+#   docker compose up -d
+#   Master UI:      http://localhost:8080
+#   Application UI: http://localhost:4040  (only while a job is running)
+
+x-spark-common: &spark-common
+  image: apache/spark:3.5.1
+  environment: &spark-env
+    SPARK_NO_DAEMONIZE: "true"
+  volumes:
+    - ./data:/opt/data          # shared storage layer (dataset + job output)
+    - ./apps:/opt/apps          # PySpark job code
+  networks: [sparknet]
+
+services:
+  spark-master:
+    <<: *spark-common
+    container_name: spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    environment:
+      <<: *spark-env
+      SPARK_MASTER_HOST: spark-master
+    ports:
+      - "8080:8080"             # Master administration dashboard
+      - "7077:7077"             # cluster scheduling endpoint
+      - "4040:4040"             # driver application UI (spark-submit runs here)
+
+  spark-worker-1:
+    <<: *spark-common
+    container_name: spark-worker-1
+    depends_on: [spark-master]
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      <<: *spark-env
+      SPARK_WORKER_CORES: "2"   # explicit performance constraint
+      SPARK_WORKER_MEMORY: 2g
+      SPARK_WORKER_WEBUI_PORT: "8081"
+    ports:
+      - "8081:8081"
+
+  spark-worker-2:
+    <<: *spark-common
+    container_name: spark-worker-2
+    depends_on: [spark-master]
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      <<: *spark-env
+      SPARK_WORKER_CORES: "2"
+      SPARK_WORKER_MEMORY: 2g
+      SPARK_WORKER_WEBUI_PORT: "8082"
+    ports:
+      - "8082:8082"
+
+networks:
+  sparknet:
+    driver: bridge
