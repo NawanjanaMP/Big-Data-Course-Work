@@ -1,0 +1,24 @@
+version: "3.9"
+
+# Task 4 - Graph Database Engineering with Neo4j Community Edition
+#
+#   docker compose up -d
+#   Browser UI: http://localhost:7474   (login: neo4j / BigData2026!)
+
+services:
+  neo4j:
+    image: neo4j:5-community
+    container_name: neo4j-task4
+    restart: unless-stopped
+    ports:
+      - "7474:7474"        # HTTP - Neo4j Browser web traffic
+      - "7687:7687"        # Bolt - internal binary protocol (drivers, cypher-shell)
+    environment:
+      # Custom credential flags (Step 4.1 security requirement)
+      NEO4J_AUTH: neo4j/BigData2026!
+      # Modest heap suitable for the 5,000-edge subset
+      NEO4J_server_memory_heap_initial__size: 512m
+      NEO4J_server_memory_heap_max__size: 1g
+    volumes:
+      - ./neo4j-data:/data           # persistent graph store
+      - ./import:/var/lib/neo4j/import   # LOAD CSV reads from here (file:///)
